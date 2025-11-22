@@ -1,38 +1,35 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client"
   output   = "../app/generated/prisma"
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
 }
 
 model Product {
-  id       Int            @id @default(autoincrement())
-  name     String
+  id   Int   @id @default(autoincrement())
+  name String
 }
 
 model ProductOption {
-  id        Int      @id @default(autoincrement())
+  id   Int   @id @default(autoincrement())
   productId Int
   price     Int
   stock     Int
-  version   Int      @default(0)
+  version   Int @default(0)
 }
 
 model Order {
-  id        Int           @id @default(autoincrement())
-  status    String        @default("pending")
-  createdAt DateTime      @default(now())
+  id   Int   @id @default(autoincrement())
+  status    String   @default("pending")
+  createdAt DateTime @default(now())
 }
 
 model OrderDetail {
-  id             Int           @id @default(autoincrement())
-  orderId        Int
+  id   Int   @id @default(autoincrement())
+  orderId         Int
   productOptionId Int
-  qty            Int
-  unitPrice      Int
+  qty             Int
+  unitPrice       Int
 }
